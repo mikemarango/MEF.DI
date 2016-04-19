@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace WPF.Services
 {
     public class CustomerRepository : ICustomerRepository
     {
-        public List<Customer> GetAll()
+        public ObservableCollection<Customer> GetAll()
         {
-            List<Customer> customers = new List<Customer>()
+            ObservableCollection<Customer> customers = new ObservableCollection<Customer>()
             {
                 new Customer() { Id = 1, Name = "Mike Marango", Email = "mike.marango@gmail.com", Twitter = "@mikemarango" },
                 new Customer() { Id = 2, Name = "Jerry Nixon", Email = "jerrynixon@microsoft.com", Twitter = "@jerrynixon" },
@@ -22,7 +23,7 @@ namespace WPF.Services
 
         public Customer GetById(int id)
         {
-            List<Customer> customers = GetAll();
+            ObservableCollection<Customer> customers = GetAll();
             return customers.Where(c => c.Id == id).FirstOrDefault();
         }
 
