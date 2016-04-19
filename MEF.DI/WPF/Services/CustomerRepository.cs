@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ using WPF.Models;
 
 namespace WPF.Services
 {
+    [Export(typeof(ICustomerRepository))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CustomerRepository : ICustomerRepository
     {
         public ObservableCollection<Customer> GetAll()

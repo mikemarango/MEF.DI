@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0" Content="{Binding CurrentViewModel}" />
+        <Button Grid.Row="1" Content="Toggle View" Command="{Binding ToggleViewCommand}" />
+
     </Grid>
 </Window>

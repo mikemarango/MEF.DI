@@ -14,22 +14,28 @@ namespace WPF.ViewModels
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class MainWindowViewModel : ViewModelBase, IPartImportsSatisfiedNotification
     {
+        [ImportingConstructor]
+        public MainWindowViewModel()
+        {
+            ToggleViewCommand = new ToggleViewCommand(this);
+        }
+
         [Import]
         private CustomerListViewModel _CustomerListViewModel;
         [Import]
         private CustomerViewModel _CustomerViewModel;
         [Import]
         ViewModelBase _CurrentViewModel;
-        public MainWindowViewModel()
-        {
-            ToggleViewCommand = new ToggleViewCommand(this);
-        }
 
 
         public ICommand ToggleViewCommand { get; private set; }
-        public ViewModelBase CurrentViewModel { get { return _CurrentViewModel; } set { Set(ref _CurrentViewModel, value); } }
+        public ViewModelBase CurrentViewModel
+        {
+            get { return _CurrentViewModel; }
+            set { Set(ref _CurrentViewModel, value); }
+        }
 
-        internal void OnToggleViewCommand()
+        public void OnToggleViewCommand()
         {
             if (_CurrentViewModel.Equals(_CustomerListViewModel))
                 CurrentViewModel = _CustomerViewModel;
